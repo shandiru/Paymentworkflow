@@ -110,6 +110,7 @@ const availableSlots = generatedSlots.filter((slotTime) => {
       icon: User,
       description: 'User selects time slot and enters personal information',
       formFields: [
+        { name: 'services', required: true, example: '[{ serviceId: "6983...", name: "Acne Clearing Treatment", price: 80, duration: 60 }]' },
         { name: 'name', required: true, example: 'John Doe' },
         { name: 'email', required: true, example: 'john@example.com' },
         { name: 'phone', required: true, example: '+44 7700 900123' },
