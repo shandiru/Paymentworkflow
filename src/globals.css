@@ -1,0 +1,40 @@
+:root {
+  --color-primary: #B0B0B0; /* ash gray replacing light blue */
+  --color-secondary: #D31B0B; /* red */
+
+  /* Light mode colors */
+  --color-text: #000000;
+  --color-bg: #ffffff;
+
+  /* Dark mode colors */
+  --color-text-dark: #ffffff;
+  --color-bg-dark: #000000;
+
+  /* Overlay & rating */
+  --color-overlay: rgba(0, 0, 0, 0.7);
+  --color-rating: var(--color-primary);
+
+  /* Additional arrow colors */
+  --color-green: #3BB14A;
+  --color-blue: var(--color-primary); /* replaced with ash gray */
+}
+
+/* Text helpers */
+.text-primary { color: var(--color-primary) !important; }
+.text-green { color: var(--color-green) !important; }
+.text-blue { color: var(--color-blue) !important; }
+.text-light { color: var(--color-text) !important; }
+.text-dark { color: var(--color-text-dark) !important; }
+.text-rating { color: var(--color-rating); }
+
+/* Background helpers */
+.bg-primary { background-color: var(--color-primary) !important; }
+.bg-green { background-color: var(--color-green) !important; }
+.bg-blue { background-color: var(--color-blue) !important; }
+.bg-light { background-color: var(--color-bg) !important; }
+.bg-dark { background-color: var(--color-bg-dark) !important; }
+.bg-overlay { background-color: var(--color-overlay) !important; }
+
+/* Shadow & Border */
+.shadow-primary { box-shadow: 0 10px 15px -3px rgba(176, 176, 176, 0.5), 0 4px 6px -2 rgba(176, 176, 176, 0.1); }
+.border-primary { border: 2px solid var(--color-primary); }
