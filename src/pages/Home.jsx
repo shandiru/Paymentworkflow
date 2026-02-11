@@ -15,9 +15,9 @@ export default function PaymentFlowDiagram() {
     {
       id: 1,
       actor: 'USER',
-      actorColor: 'bg-cyan-500',
-      borderColor: 'border-cyan-500',
-      bgGradient: 'from-cyan-500/10 to-transparent',
+      actorColor: 'bg-blue-600',
+      borderColor: 'border-blue-300',
+      bgColor: 'bg-blue-50',
       title: 'User Selects Date',
       icon: Calendar,
       description: 'User picks an appointment date from the calendar',
@@ -31,9 +31,9 @@ export default function PaymentFlowDiagram() {
     {
       id: 2,
       actor: 'FRONTEND',
-      actorColor: 'bg-pink-500',
-      borderColor: 'border-pink-500',
-      bgGradient: 'from-pink-500/10 to-transparent',
+      actorColor: 'bg-indigo-600',
+      borderColor: 'border-indigo-300',
+      bgColor: 'bg-indigo-50',
       title: 'Fetch Available Time Slots',
       icon: Server,
       description: 'Frontend calls availability API with selected date',
@@ -65,9 +65,9 @@ export default function PaymentFlowDiagram() {
     {
       id: 3,
       actor: 'BACKEND',
-      actorColor: 'bg-yellow-500',
-      borderColor: 'border-yellow-500',
-      bgGradient: 'from-yellow-500/10 to-transparent',
+      actorColor: 'bg-amber-600',
+      borderColor: 'border-amber-300',
+      bgColor: 'bg-amber-50',
       title: 'Calculate & Filter Available Slots',
       icon: Server,
       description: 'Backend processes date and returns available time slots',
@@ -103,9 +103,9 @@ const availableSlots = generatedSlots.filter((slotTime) => {
     {
       id: 4,
       actor: 'USER',
-      actorColor: 'bg-cyan-500',
-      borderColor: 'border-cyan-500',
-      bgGradient: 'from-cyan-500/10 to-transparent',
+      actorColor: 'bg-blue-600',
+      borderColor: 'border-blue-300',
+      bgColor: 'bg-blue-50',
       title: 'Select Time & Fill Customer Details',
       icon: User,
       description: 'User selects time slot and enters personal information',
@@ -123,9 +123,9 @@ const availableSlots = generatedSlots.filter((slotTime) => {
     {
       id: 5,
       actor: 'FRONTEND',
-      actorColor: 'bg-pink-500',
-      borderColor: 'border-pink-500',
-      bgGradient: 'from-pink-500/10 to-transparent',
+      actorColor: 'bg-indigo-600',
+      borderColor: 'border-indigo-300',
+      bgColor: 'bg-indigo-50',
       title: 'Create Stripe Payment Session',
       icon: CreditCard,
       description: 'Frontend sends booking data to create Stripe checkout session',
@@ -194,9 +194,9 @@ const availableSlots = generatedSlots.filter((slotTime) => {
     {
       id: 6,
       actor: 'BACKEND',
-      actorColor: 'bg-yellow-500',
-      borderColor: 'border-yellow-500',
-      bgGradient: 'from-yellow-500/10 to-transparent',
+      actorColor: 'bg-amber-600',
+      borderColor: 'border-amber-300',
+      bgColor: 'bg-amber-50',
       title: 'Create Stripe Checkout Session',
       icon: DollarSign,
       description: 'Backend creates Stripe customer, calculates 30% deposit, generates checkout URL',
@@ -275,9 +275,9 @@ const session = await stripe.checkout.sessions.create({
     {
       id: 7,
       actor: 'STRIPE',
-      actorColor: 'bg-purple-500',
-      borderColor: 'border-purple-500',
-      bgGradient: 'from-purple-500/10 to-transparent',
+      actorColor: 'bg-purple-600',
+      borderColor: 'border-purple-300',
+      bgColor: 'bg-purple-50',
       title: 'User Completes Payment on Stripe',
       icon: CreditCard,
       description: 'User redirected to Stripe checkout page, enters card details, pays 30% deposit',
@@ -300,9 +300,9 @@ const session = await stripe.checkout.sessions.create({
     {
       id: 8,
       actor: 'STRIPE',
-      actorColor: 'bg-purple-500',
-      borderColor: 'border-purple-500',
-      bgGradient: 'from-purple-500/10 to-transparent',
+      actorColor: 'bg-purple-600',
+      borderColor: 'border-purple-300',
+      bgColor: 'bg-purple-50',
       title: 'Stripe Sends Webhook Event',
       icon: Server,
       description: 'After successful payment, Stripe sends checkout.session.completed event',
@@ -321,7 +321,7 @@ const session = await stripe.checkout.sessions.create({
             customer: 'cus_Tv9pQOmPwGPXMJ',
             payment_intent: 'pi_test_intent_001',
             payment_status: 'paid',
-            amount_total: 2400, // in cents
+            amount_total: 2400,
             currency: 'gbp'
           }
         }
@@ -331,9 +331,9 @@ const session = await stripe.checkout.sessions.create({
     {
       id: 9,
       actor: 'BACKEND',
-      actorColor: 'bg-yellow-500',
-      borderColor: 'border-yellow-500',
-      bgGradient: 'from-yellow-500/10 to-transparent',
+      actorColor: 'bg-amber-600',
+      borderColor: 'border-amber-300',
+      bgColor: 'bg-amber-50',
       title: 'Process Webhook & Create Booking',
       icon: Database,
       description: 'Verify webhook signature, retrieve customer data, create booking, update availability',
@@ -430,9 +430,9 @@ if (event.type === 'checkout.session.completed') {
     {
       id: 10,
       actor: 'DATABASE',
-      actorColor: 'bg-green-500',
-      borderColor: 'border-green-500',
-      bgGradient: 'from-green-500/10 to-transparent',
+      actorColor: 'bg-emerald-600',
+      borderColor: 'border-emerald-300',
+      bgColor: 'bg-emerald-50',
       title: 'Update Availability Collection',
       icon: Database,
       description: 'Increment bookingsCount for the selected time slot',
@@ -441,7 +441,7 @@ if (event.type === 'checkout.session.completed') {
         slots: [
           {
             time: '11:30 AM',
-            bookingsCount: 1, // incremented from 0 to 1
+            bookingsCount: 1,
             isLeave: false,
             isBooked: true
           }
@@ -485,9 +485,9 @@ if (event.type === 'checkout.session.completed') {
     {
       id: 11,
       actor: 'STRIPE',
-      actorColor: 'bg-purple-500',
-      borderColor: 'border-purple-500',
-      bgGradient: 'from-purple-500/10 to-transparent',
+      actorColor: 'bg-purple-600',
+      borderColor: 'border-purple-300',
+      bgColor: 'bg-purple-50',
       title: 'Redirect to Success Page',
       icon: Check,
       description: 'Stripe redirects user to success URL with session ID',
@@ -502,9 +502,9 @@ if (event.type === 'checkout.session.completed') {
     {
       id: 12,
       actor: 'FRONTEND',
-      actorColor: 'bg-pink-500',
-      borderColor: 'border-pink-500',
-      bgGradient: 'from-pink-500/10 to-transparent',
+      actorColor: 'bg-indigo-600',
+      borderColor: 'border-indigo-300',
+      bgColor: 'bg-indigo-50',
       title: 'Fetch Booking Details for Display',
       icon: Server,
       description: 'Success page extracts session_id and calls backend to get booking info',
@@ -572,9 +572,9 @@ if (event.type === 'checkout.session.completed') {
     {
       id: 13,
       actor: 'USER',
-      actorColor: 'bg-cyan-500',
-      borderColor: 'border-cyan-500',
-      bgGradient: 'from-cyan-500/10 to-transparent',
+      actorColor: 'bg-blue-600',
+      borderColor: 'border-blue-300',
+      bgColor: 'bg-blue-50',
       title: 'Booking Confirmed Successfully! 🎉',
       icon: Check,
       description: 'User sees confirmation with all booking details and receipt',
@@ -601,49 +601,49 @@ if (event.type === 'checkout.session.completed') {
   ];
 
   const actorColors = {
-    USER: 'text-cyan-500',
-    FRONTEND: 'text-pink-500',
-    BACKEND: 'text-yellow-500',
-    STRIPE: 'text-purple-500',
-    DATABASE: 'text-green-500'
+    USER: 'text-blue-700',
+    FRONTEND: 'text-indigo-700',
+    BACKEND: 'text-amber-700',
+    STRIPE: 'text-purple-700',
+    DATABASE: 'text-emerald-700'
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-8">
+    <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 via-pink-400 to-purple-400 bg-clip-text text-transparent mb-4">
+          <h1 className="text-5xl font-bold text-gray-800 mb-4">
             💳 Complete Payment Flow
           </h1>
-          <p className="text-gray-300 text-lg">
+          <p className="text-gray-600 text-lg">
             Detailed breakdown with request/response bodies and code snippets
           </p>
         </div>
 
         {/* Legend */}
-        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-slate-700">
-          <h3 className="text-white font-semibold mb-4">Color Legend</h3>
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-200">
+          <h3 className="text-gray-800 font-semibold mb-4">Color Legend</h3>
           <div className="flex flex-wrap gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-cyan-500 rounded"></div>
-              <span className="text-gray-300">User Action</span>
+              <div className="w-4 h-4 bg-blue-600 rounded"></div>
+              <span className="text-gray-700">User Action</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-pink-500 rounded"></div>
-              <span className="text-gray-300">Frontend</span>
+              <div className="w-4 h-4 bg-indigo-600 rounded"></div>
+              <span className="text-gray-700">Frontend</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-yellow-500 rounded"></div>
-              <span className="text-gray-300">Backend</span>
+              <div className="w-4 h-4 bg-amber-600 rounded"></div>
+              <span className="text-gray-700">Backend</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-purple-500 rounded"></div>
-              <span className="text-gray-300">Stripe</span>
+              <div className="w-4 h-4 bg-purple-600 rounded"></div>
+              <span className="text-gray-700">Stripe</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-green-500 rounded"></div>
-              <span className="text-gray-300">Database</span>
+              <div className="w-4 h-4 bg-emerald-600 rounded"></div>
+              <span className="text-gray-700">Database</span>
             </div>
           </div>
         </div>
@@ -653,44 +653,44 @@ if (event.type === 'checkout.session.completed') {
           {steps.map((step, index) => (
             <div
               key={step.id}
-              className={`bg-gradient-to-br ${step.bgGradient} bg-slate-800/50 backdrop-blur-sm rounded-2xl border-2 ${step.borderColor} overflow-hidden transition-all duration-300 hover:shadow-2xl`}
+              className={`${step.bgColor} rounded-lg border-2 ${step.borderColor} overflow-hidden transition-all duration-300 hover:shadow-lg`}
             >
               {/* Step Header */}
               <div
-                className="p-6 cursor-pointer"
+                className="p-6 cursor-pointer bg-white"
                 onClick={() => toggleStep(step.id)}
               >
                 <div className="flex items-start gap-4">
                   {/* Step Number */}
-                  <div className={`flex-shrink-0 w-12 h-12 ${step.actorColor} rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg`}>
+                  <div className={`flex-shrink-0 w-12 h-12 ${step.actorColor} rounded-full flex items-center justify-center text-white font-bold text-xl shadow`}>
                     {step.id === 13 ? '✓' : step.id}
                   </div>
 
                   {/* Content */}
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className={`${step.actorColor} font-bold text-sm px-3 py-1 bg-slate-700/50 rounded-full`}>
+                      <span className={`${step.actorColor} font-bold text-sm px-3 py-1 bg-gray-100 rounded-full`}>
                         {step.actor}
                       </span>
                       {step.badge && (
-                        <span className="text-xs px-2 py-1 bg-purple-500/30 text-purple-300 rounded-full border border-purple-500/50 animate-pulse">
+                        <span className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded-full border border-purple-300">
                           {step.badge}
                         </span>
                       )}
                     </div>
-                    <h3 className="text-white text-xl font-bold mb-2 flex items-center gap-2">
+                    <h3 className="text-gray-800 text-xl font-bold mb-2 flex items-center gap-2">
                       <step.icon className="w-5 h-5" />
                       {step.title}
                     </h3>
-                    <p className="text-gray-300">{step.description}</p>
+                    <p className="text-gray-600">{step.description}</p>
 
                     {/* Endpoint Badge */}
                     {step.endpoint && (
-                      <div className="mt-3 inline-flex items-center gap-2 bg-slate-700/50 px-4 py-2 rounded-lg border border-slate-600">
-                        <span className={`font-bold ${step.endpoint.method === 'GET' ? 'text-green-400' : 'text-blue-400'}`}>
+                      <div className="mt-3 inline-flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-lg border border-gray-300">
+                        <span className={`font-bold ${step.endpoint.method === 'GET' ? 'text-green-700' : 'text-blue-700'}`}>
                           {step.endpoint.method}
                         </span>
-                        <code className="text-cyan-400 font-mono text-sm">
+                        <code className="text-indigo-700 font-mono text-sm">
                           {step.endpoint.url}{step.endpoint.params || ''}
                         </code>
                       </div>
@@ -698,7 +698,7 @@ if (event.type === 'checkout.session.completed') {
                   </div>
 
                   {/* Expand Icon */}
-                  <div className="text-gray-400">
+                  <div className="text-gray-500">
                     {expandedSteps[step.id] ? (
                       <ChevronUp className="w-6 h-6" />
                     ) : (
@@ -710,23 +710,23 @@ if (event.type === 'checkout.session.completed') {
 
               {/* Expanded Content */}
               {expandedSteps[step.id] && (
-                <div className="border-t border-slate-700 p-6 space-y-6 bg-slate-900/30">
+                <div className="border-t border-gray-200 p-6 space-y-6 bg-white">
                   {/* Component */}
                   {step.component && (
                     <div>
-                      <h4 className="text-yellow-400 font-semibold mb-2">📦 Component</h4>
-                      <code className="text-gray-300 bg-slate-800 px-3 py-1 rounded">{step.component}</code>
+                      <h4 className="text-amber-700 font-semibold mb-2">📦 Component</h4>
+                      <code className="text-gray-700 bg-gray-100 px-3 py-1 rounded">{step.component}</code>
                     </div>
                   )}
 
                   {/* Details */}
                   {step.details && (
-                    <div className="bg-slate-800/50 p-4 rounded-lg">
-                      <h4 className="text-yellow-400 font-semibold mb-3">Details</h4>
+                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                      <h4 className="text-amber-700 font-semibold mb-3">Details</h4>
                       {Object.entries(step.details).map(([key, value]) => (
                         <div key={key} className="mb-2">
-                          <span className="text-gray-400 capitalize">{key.replace(/([A-Z])/g, ' $1')}: </span>
-                          <span className="text-gray-200">{value}</span>
+                          <span className="text-gray-600 capitalize">{key.replace(/([A-Z])/g, ' $1')}: </span>
+                          <span className="text-gray-800">{value}</span>
                         </div>
                       ))}
                     </div>
@@ -735,17 +735,17 @@ if (event.type === 'checkout.session.completed') {
                   {/* Form Fields */}
                   {step.formFields && (
                     <div>
-                      <h4 className="text-yellow-400 font-semibold mb-3">📝 Form Fields</h4>
+                      <h4 className="text-amber-700 font-semibold mb-3">📝 Form Fields</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {step.formFields.map((field) => (
-                          <div key={field.name} className="bg-slate-800/50 p-3 rounded-lg">
+                          <div key={field.name} className="bg-gray-50 p-3 rounded-lg border border-gray-200">
                             <div className="flex items-center gap-2 mb-1">
-                              <code className="text-pink-400 font-mono text-sm">{field.name}</code>
+                              <code className="text-indigo-700 font-mono text-sm">{field.name}</code>
                               {field.required && (
-                                <span className="text-red-400 text-xs">*required</span>
+                                <span className="text-red-600 text-xs">*required</span>
                               )}
                             </div>
-                            <div className="text-gray-400 text-sm">Example: {field.example}</div>
+                            <div className="text-gray-600 text-sm">Example: {field.example}</div>
                           </div>
                         ))}
                       </div>
@@ -755,9 +755,9 @@ if (event.type === 'checkout.session.completed') {
                   {/* Request Example */}
                   {step.requestExample && (
                     <div>
-                      <h4 className="text-green-400 font-semibold mb-3">📤 Request</h4>
-                      <pre className="bg-slate-950 p-4 rounded-lg overflow-x-auto border border-slate-700">
-                        <code className="text-sm text-gray-300">
+                      <h4 className="text-green-700 font-semibold mb-3">📤 Request</h4>
+                      <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto border border-gray-700">
+                        <code className="text-sm text-gray-100">
                           {JSON.stringify(step.requestExample, null, 2)}
                         </code>
                       </pre>
@@ -767,15 +767,15 @@ if (event.type === 'checkout.session.completed') {
                   {/* Response Example */}
                   {step.responseExample && (
                     <div>
-                      <h4 className="text-blue-400 font-semibold mb-3">📥 Response</h4>
-                      <div className="bg-slate-950 p-4 rounded-lg border border-slate-700">
+                      <h4 className="text-blue-700 font-semibold mb-3">📥 Response</h4>
+                      <div className="bg-gray-900 p-4 rounded-lg border border-gray-700">
                         <div className="flex items-center gap-2 mb-2">
                           <span className={`font-semibold ${step.responseExample.status === 200 ? 'text-green-400' : 'text-red-400'}`}>
                             Status: {step.responseExample.status}
                           </span>
                         </div>
                         <pre className="overflow-x-auto">
-                          <code className="text-sm text-gray-300">
+                          <code className="text-sm text-gray-100">
                             {JSON.stringify(step.responseExample.body, null, 2)}
                           </code>
                         </pre>
@@ -786,12 +786,12 @@ if (event.type === 'checkout.session.completed') {
                   {/* Logic Steps */}
                   {step.logic && (
                     <div>
-                      <h4 className="text-purple-400 font-semibold mb-3">⚙️ Processing Logic</h4>
+                      <h4 className="text-purple-700 font-semibold mb-3">⚙️ Processing Logic</h4>
                       <ol className="space-y-2">
                         {step.logic.map((item, i) => (
                           <li key={i} className="flex items-start gap-3">
-                            <span className="text-purple-400 font-mono">{i + 1}.</span>
-                            <span className="text-gray-300">{item}</span>
+                            <span className="text-purple-700 font-mono">{i + 1}.</span>
+                            <span className="text-gray-700">{item}</span>
                           </li>
                         ))}
                       </ol>
@@ -801,12 +801,12 @@ if (event.type === 'checkout.session.completed') {
                   {/* Business Hours */}
                   {step.businessHours && (
                     <div>
-                      <h4 className="text-yellow-400 font-semibold mb-3">🕒 Business Hours</h4>
-                      <div className="bg-slate-800/50 p-4 rounded-lg space-y-2">
+                      <h4 className="text-amber-700 font-semibold mb-3">🕒 Business Hours</h4>
+                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-2">
                         {Object.entries(step.businessHours).map(([day, hours]) => (
                           <div key={day} className="flex justify-between">
-                            <span className="text-gray-300 font-medium">{day}:</span>
-                            <span className={hours === 'CLOSED' ? 'text-red-400' : 'text-green-400'}>{hours}</span>
+                            <span className="text-gray-700 font-medium">{day}:</span>
+                            <span className={hours === 'CLOSED' ? 'text-red-600' : 'text-green-700'}>{hours}</span>
                           </div>
                         ))}
                       </div>
@@ -815,21 +815,21 @@ if (event.type === 'checkout.session.completed') {
 
                   {/* Deposit Calculation */}
                   {step.depositCalculation && (
-                    <div className="bg-gradient-to-r from-yellow-500/10 to-purple-500/10 p-5 rounded-lg border-l-4 border-yellow-500">
-                      <h4 className="text-yellow-400 font-semibold mb-3 flex items-center gap-2">
+                    <div className="bg-amber-50 p-5 rounded-lg border-l-4 border-amber-600">
+                      <h4 className="text-amber-700 font-semibold mb-3 flex items-center gap-2">
                         <DollarSign className="w-5 h-5" />
                         Deposit Calculation (30%)
                       </h4>
-                      <div className="space-y-2 text-gray-200">
+                      <div className="space-y-2 text-gray-800">
                         <div className="flex justify-between">
                           <span>Full Price:</span>
                           <span className="font-mono">£{step.depositCalculation.fullPrice}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Deposit ({step.depositCalculation.depositPercent}%):</span>
-                          <span className="font-mono font-bold text-yellow-400">£{step.depositCalculation.depositAmount}</span>
+                          <span className="font-mono font-bold text-amber-700">£{step.depositCalculation.depositAmount}</span>
                         </div>
-                        <div className="flex justify-between text-gray-400">
+                        <div className="flex justify-between text-gray-600">
                           <span>Remaining Balance:</span>
                           <span className="font-mono">£{step.depositCalculation.remainingBalance}</span>
                         </div>
@@ -840,9 +840,9 @@ if (event.type === 'checkout.session.completed') {
                   {/* Stripe Metadata */}
                   {step.stripeMetadata && (
                     <div>
-                      <h4 className="text-purple-400 font-semibold mb-3">🏷️ Stripe Customer Metadata</h4>
-                      <pre className="bg-slate-950 p-4 rounded-lg overflow-x-auto border border-slate-700">
-                        <code className="text-sm text-gray-300">
+                      <h4 className="text-purple-700 font-semibold mb-3">🏷️ Stripe Customer Metadata</h4>
+                      <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto border border-gray-700">
+                        <code className="text-sm text-gray-100">
                           {JSON.stringify(step.stripeMetadata, null, 2)}
                         </code>
                       </pre>
@@ -852,9 +852,9 @@ if (event.type === 'checkout.session.completed') {
                   {/* Code Snippet */}
                   {step.codeSnippet && (
                     <div>
-                      <h4 className="text-cyan-400 font-semibold mb-3">💻 Code Snippet</h4>
-                      <pre className="bg-slate-950 p-4 rounded-lg overflow-x-auto border border-slate-700">
-                        <code className="text-sm text-gray-300 font-mono whitespace-pre">
+                      <h4 className="text-indigo-700 font-semibold mb-3">💻 Code Snippet</h4>
+                      <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto border border-gray-700">
+                        <code className="text-sm text-gray-100 font-mono whitespace-pre">
                           {step.codeSnippet}
                         </code>
                       </pre>
@@ -863,11 +863,11 @@ if (event.type === 'checkout.session.completed') {
 
                   {/* Payment Details */}
                   {step.paymentDetails && (
-                    <div className="bg-purple-500/10 p-5 rounded-lg border border-purple-500/30">
-                      <h4 className="text-purple-400 font-semibold mb-3">💳 Payment Details</h4>
+                    <div className="bg-purple-50 p-5 rounded-lg border border-purple-200">
+                      <h4 className="text-purple-700 font-semibold mb-3">💳 Payment Details</h4>
                       <div className="space-y-2">
                         {Object.entries(step.paymentDetails).map(([key, value]) => (
-                          <div key={key} className="flex justify-between text-gray-200">
+                          <div key={key} className="flex justify-between text-gray-800">
                             <span className="capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
                             <span className="font-mono font-semibold">{value}</span>
                           </div>
@@ -879,11 +879,11 @@ if (event.type === 'checkout.session.completed') {
                   {/* User Actions */}
                   {step.userActions && (
                     <div>
-                      <h4 className="text-cyan-400 font-semibold mb-3">👤 User Actions</h4>
+                      <h4 className="text-blue-700 font-semibold mb-3">👤 User Actions</h4>
                       <ul className="space-y-2">
                         {step.userActions.map((action, i) => (
-                          <li key={i} className="flex items-center gap-2 text-gray-300">
-                            <Check className="w-4 h-4 text-cyan-400" />
+                          <li key={i} className="flex items-center gap-2 text-gray-700">
+                            <Check className="w-4 h-4 text-blue-600" />
                             {action}
                           </li>
                         ))}
@@ -894,9 +894,9 @@ if (event.type === 'checkout.session.completed') {
                   {/* Webhook Payload */}
                   {step.webhookPayload && (
                     <div>
-                      <h4 className="text-purple-400 font-semibold mb-3">📨 Webhook Payload</h4>
-                      <pre className="bg-slate-950 p-4 rounded-lg overflow-x-auto border border-slate-700">
-                        <code className="text-sm text-gray-300">
+                      <h4 className="text-purple-700 font-semibold mb-3">📨 Webhook Payload</h4>
+                      <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto border border-gray-700">
+                        <code className="text-sm text-gray-100">
                           {JSON.stringify(step.webhookPayload, null, 2)}
                         </code>
                       </pre>
@@ -906,12 +906,12 @@ if (event.type === 'checkout.session.completed') {
                   {/* Webhook Processing */}
                   {step.webhookProcessing && (
                     <div>
-                      <h4 className="text-yellow-400 font-semibold mb-3">⚡ Webhook Processing Steps</h4>
+                      <h4 className="text-amber-700 font-semibold mb-3">⚡ Webhook Processing Steps</h4>
                       <ol className="space-y-2">
                         {step.webhookProcessing.map((item, i) => (
                           <li key={i} className="flex items-start gap-3">
-                            <span className="text-yellow-400 font-mono">{i + 1}.</span>
-                            <span className="text-gray-300">{item}</span>
+                            <span className="text-amber-700 font-mono">{i + 1}.</span>
+                            <span className="text-gray-700">{item}</span>
                           </li>
                         ))}
                       </ol>
@@ -921,9 +921,9 @@ if (event.type === 'checkout.session.completed') {
                   {/* Booking Document */}
                   {step.bookingDocument && (
                     <div>
-                      <h4 className="text-green-400 font-semibold mb-3">📄 Created Booking Document</h4>
-                      <pre className="bg-slate-950 p-4 rounded-lg overflow-x-auto border border-slate-700">
-                        <code className="text-sm text-gray-300">
+                      <h4 className="text-green-700 font-semibold mb-3">📄 Created Booking Document</h4>
+                      <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto border border-gray-700">
+                        <code className="text-sm text-gray-100">
                           {JSON.stringify(step.bookingDocument, null, 2)}
                         </code>
                       </pre>
@@ -933,9 +933,9 @@ if (event.type === 'checkout.session.completed') {
                   {/* Availability Update */}
                   {step.availabilityUpdate && (
                     <div>
-                      <h4 className="text-green-400 font-semibold mb-3">🗓️ Availability Update</h4>
-                      <pre className="bg-slate-950 p-4 rounded-lg overflow-x-auto border border-slate-700">
-                        <code className="text-sm text-gray-300">
+                      <h4 className="text-green-700 font-semibold mb-3">🗓️ Availability Update</h4>
+                      <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto border border-gray-700">
+                        <code className="text-sm text-gray-100">
                           {JSON.stringify(step.availabilityUpdate, null, 2)}
                         </code>
                       </pre>
@@ -944,11 +944,11 @@ if (event.type === 'checkout.session.completed') {
 
                   {/* Displayed Info */}
                   {step.displayedInfo && (
-                    <div className="bg-cyan-500/10 p-5 rounded-lg border border-cyan-500/30">
-                      <h4 className="text-cyan-400 font-semibold mb-3">🎉 Success Page Display</h4>
+                    <div className="bg-blue-50 p-5 rounded-lg border border-blue-200">
+                      <h4 className="text-blue-700 font-semibold mb-3">🎉 Success Page Display</h4>
                       <div className="space-y-2">
                         {Object.entries(step.displayedInfo).map(([key, value]) => (
-                          <div key={key} className="flex justify-between text-gray-200">
+                          <div key={key} className="flex justify-between text-gray-800">
                             <span className="capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
                             <span className="font-mono font-semibold">{value}</span>
                           </div>
@@ -960,11 +960,11 @@ if (event.type === 'checkout.session.completed') {
                   {/* Actions */}
                   {step.actions && (
                     <div>
-                      <h4 className="text-cyan-400 font-semibold mb-3">🔘 Available Actions</h4>
+                      <h4 className="text-blue-700 font-semibold mb-3">🔘 Available Actions</h4>
                       <ul className="space-y-2">
                         {step.actions.map((action, i) => (
-                          <li key={i} className="flex items-center gap-2 text-gray-300">
-                            <Check className="w-4 h-4 text-cyan-400" />
+                          <li key={i} className="flex items-center gap-2 text-gray-700">
+                            <Check className="w-4 h-4 text-blue-600" />
                             {action}
                           </li>
                         ))}
@@ -975,9 +975,9 @@ if (event.type === 'checkout.session.completed') {
                   {/* Backend Code */}
                   {step.backendCode && (
                     <div>
-                      <h4 className="text-yellow-400 font-semibold mb-3">🔧 Backend Code</h4>
-                      <pre className="bg-slate-950 p-4 rounded-lg overflow-x-auto border border-slate-700">
-                        <code className="text-sm text-gray-300 font-mono whitespace-pre">
+                      <h4 className="text-amber-700 font-semibold mb-3">🔧 Backend Code</h4>
+                      <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto border border-gray-700">
+                        <code className="text-sm text-gray-100 font-mono whitespace-pre">
                           {step.backendCode}
                         </code>
                       </pre>
@@ -986,16 +986,16 @@ if (event.type === 'checkout.session.completed') {
 
                   {/* Note */}
                   {step.note && (
-                    <div className="bg-purple-500/10 p-4 rounded-lg border-l-4 border-purple-500">
-                      <p className="text-gray-300">{step.note}</p>
+                    <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-600">
+                      <p className="text-gray-700">{step.note}</p>
                     </div>
                   )}
 
                   {/* Redirect URL */}
                   {step.redirectUrl && !step.urlParts && (
                     <div>
-                      <h4 className="text-blue-400 font-semibold mb-2">🔗 Redirect</h4>
-                      <code className="text-cyan-400 bg-slate-800 px-3 py-2 rounded block overflow-x-auto">
+                      <h4 className="text-blue-700 font-semibold mb-2">🔗 Redirect</h4>
+                      <code className="text-indigo-700 bg-gray-100 px-3 py-2 rounded block overflow-x-auto">
                         {step.redirectUrl}
                       </code>
                     </div>
@@ -1004,16 +1004,16 @@ if (event.type === 'checkout.session.completed') {
                   {/* URL Parts */}
                   {step.urlParts && (
                     <div>
-                      <h4 className="text-blue-400 font-semibold mb-3">🔗 Redirect URL Breakdown</h4>
-                      <div className="bg-slate-800/50 p-4 rounded-lg space-y-2">
+                      <h4 className="text-blue-700 font-semibold mb-3">🔗 Redirect URL Breakdown</h4>
+                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-2">
                         <div>
-                          <span className="text-gray-400">Base URL: </span>
-                          <code className="text-cyan-400">{step.urlParts.base}</code>
+                          <span className="text-gray-600">Base URL: </span>
+                          <code className="text-indigo-700">{step.urlParts.base}</code>
                         </div>
                         <div>
-                          <span className="text-gray-400">Query Parameters: </span>
-                          <pre className="mt-2 bg-slate-950 p-2 rounded">
-                            <code className="text-sm text-gray-300">
+                          <span className="text-gray-600">Query Parameters: </span>
+                          <pre className="mt-2 bg-gray-900 p-2 rounded">
+                            <code className="text-sm text-gray-100">
                               {JSON.stringify(step.urlParts.query, null, 2)}
                             </code>
                           </pre>
@@ -1028,27 +1028,27 @@ if (event.type === 'checkout.session.completed') {
         </div>
 
         {/* Footer Note */}
-        <div className="mt-12 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700">
-          <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-            <Clock className="w-5 h-5 text-yellow-400" />
+        <div className="mt-12 bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+          <h3 className="text-gray-800 font-semibold mb-3 flex items-center gap-2">
+            <Clock className="w-5 h-5 text-amber-600" />
             Important Timing Notes
           </h3>
-          <ul className="space-y-2 text-gray-300">
+          <ul className="space-y-2 text-gray-700">
             <li className="flex gap-2">
-              <span className="text-yellow-400">•</span>
-              <span>The webhook (Step 8-10) runs <strong className="text-yellow-400">asynchronously</strong> in the background</span>
+              <span className="text-amber-600">•</span>
+              <span>The webhook (Step 8-10) runs <strong className="text-amber-700">asynchronously</strong> in the background</span>
             </li>
             <li className="flex gap-2">
-              <span className="text-yellow-400">•</span>
-              <span>User redirect (Step 11-12) happens <strong className="text-cyan-400">simultaneously</strong> but independently</span>
+              <span className="text-amber-600">•</span>
+              <span>User redirect (Step 11-12) happens <strong className="text-blue-700">simultaneously</strong> but independently</span>
             </li>
             <li className="flex gap-2">
-              <span className="text-yellow-400">•</span>
+              <span className="text-amber-600">•</span>
               <span>The success page may need to retry if booking isn't created yet</span>
             </li>
             <li className="flex gap-2">
-              <span className="text-yellow-400">•</span>
-              <span>Only <strong className="text-purple-400">30% deposit (£24)</strong> is charged, remaining <strong className="text-green-400">70% (£56)</strong> paid at appointment</span>
+              <span className="text-amber-600">•</span>
+              <span>Only <strong className="text-purple-700">30% deposit (£24)</strong> is charged, remaining <strong className="text-green-700">70% (£56)</strong> paid at appointment</span>
             </li>
           </ul>
         </div>
